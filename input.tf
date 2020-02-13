@@ -16,7 +16,7 @@ variable "VMCount" {
 # PROVIDER
 provider "azurerm" {
   # whilst the `version` attribute is optional, we recommend pinning to a given version of the Provider
-  version = "=1.22.1"
+  // version = "=1.22.1"
 //   version = ">=1.22.0"
   
   subscription_id = "${var.subscription_id}"
