@@ -2,7 +2,7 @@ resource "azurerm_resource_group" "AppRG" {
     name     = "${var.appName}RG"
     location = var.location
 
-    tags {
+    tags = {
         environment = "poc"
     }
 }
@@ -14,7 +14,7 @@ resource "azurerm_virtual_network" "AppVNet" {
     location            = var.location
     resource_group_name = azurerm_resource_group.AppRG.name
 
-    tags {
+    tags = {
         environment = "poc"
     }
 }
@@ -34,7 +34,7 @@ resource "azurerm_public_ip" "AppPublicIP" {
     resource_group_name          = azurerm_resource_group.AppRG.name
     allocation_method = "Dynamic"
 
-    tags {
+    tags = {
         environment = "poc"
     }
 }
@@ -81,7 +81,7 @@ resource "azurerm_network_security_group" "AppNSG" {
         destination_address_prefix = "*"
     }
 
-    tags {
+    tags = {
         environment = "poc"
     }
 }
@@ -101,7 +101,7 @@ resource "azurerm_network_interface" "AppNIC" {
         // public_ip_address_id          = azurerm_public_ip.AppPublicIP.id
     }
 
-    tags {
+    tags = {
         environment = "poc"
     }
 }
@@ -123,7 +123,7 @@ resource "azurerm_storage_account" "AppSA" {
     account_tier                = "Standard"
     account_replication_type    = "LRS"
 
-    tags {
+    tags = {
         environment = "poc"
     }
 }
@@ -169,7 +169,7 @@ resource "azurerm_virtual_machine" "AppVM" {
         storage_uri = azurerm_storage_account.AppSA.primary_blob_endpoint
     }
 
-    tags {
+    tags = {
         environment = "poc"
         id = count.index
     }
